@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.0.2)
-project(walker)
+project(johnnie_the_turtlebot_walker)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
 # add_compile_options(-std=c++11)
@@ -8,7 +8,8 @@ project(walker)
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
-  nav_msgs
+  sensor_msgs
+  geometry_msgs
   roscpp
   std_msgs
 )
@@ -116,7 +117,7 @@ catkin_package(
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
 include_directories(
-# include
+  include
   ${catkin_INCLUDE_DIRS}
 )
 
@@ -204,3 +205,6 @@ include_directories(
 
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
+
+add_executable(obsAvoiderRobot src/obs_avoider_robot.cpp src/obs_detector.cpp)
+target_link_libraries(obsAvoiderRobot ${catkin_LIBRARIES})

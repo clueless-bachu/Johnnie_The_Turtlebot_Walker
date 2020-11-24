@@ -1,0 +1,10 @@
+<launch>
+	<arg name = "record" default = "false"/>
+	<include file ="$(find turtlebot3_gazebo)/launch/turtlebot3_world.launch">
+	</include>
+	
+	<node pkg = "johnnie_the_turtlebot_walker" type = "obsAvoiderRobot" name = "obsAvoiderRobot" output = "screen"/>
+
+	<node pkg= "rosbag" name= "record_bag" type= "record" 
+	args = "-x /camera/(.*) --duration=15 -a -O $(find johnnie_the_turtlebot_walker)/results/rec.bag" if = "$(arg record)" />
+</launch>
